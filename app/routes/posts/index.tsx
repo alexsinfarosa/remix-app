@@ -5,6 +5,7 @@ import { formatDate } from "~/utils";
 
 // ALL POSTS
 import * as post01 from "./first-post.mdx";
+import * as post02 from "./second-post.mdx";
 
 type postFrontMatterType = {
   title: string;
@@ -23,7 +24,7 @@ function postFromModule(mod: any) {
 }
 
 export async function loader() {
-  return json([postFromModule(post01)]);
+  return json([postFromModule(post01), postFromModule(post02)]);
 }
 
 export default function IndexPostsRoute() {
@@ -31,16 +32,15 @@ export default function IndexPostsRoute() {
 
   return (
     <main>
-      <h1>Posts</h1>
       <ul className="divide-y divide-gray-200">
         {posts.map((post) => (
-          <Card key={post.slug} as="article" className={""}>
+          <Card key={post.slug} as="article" className={"py-12 first:pt-0"}>
             <Card.Title to={post.slug}>{post.title}</Card.Title>
             <Card.Eyebrow as="time" dateTime={post.date} decorate className="">
               {formatDate(post.date)}
             </Card.Eyebrow>
             <Card.Description>
-              {post.meta.description ? <p>{post.meta.description}</p> : null}
+              {post.meta.description ? post.meta.description : null}
             </Card.Description>
             <Card.Cta>Read post</Card.Cta>
           </Card>
