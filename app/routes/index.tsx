@@ -80,7 +80,7 @@ export default function Index() {
                 <div className="mt-12 flex justify-center space-x-6 sm:mx-auto sm:flex sm:max-w-lg">
                   {user ? (
                     <Link
-                      to="/lawns"
+                      to="/models"
                       className="block rounded-md border border-transparent bg-blue-500 px-5 py-3 text-base font-medium text-white shadow hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-600 sm:px-10"
                     >
                       View Lawns for {user.email}
