@@ -71,19 +71,19 @@ export default function Index() {
               <div className="relative">
                 <div className="sm:text-center">
                   <h2 className="mt-8 text-6xl font-extrabold tracking-tight text-white sm:text-8xl">
-                    NEWA
+                    Notes
                   </h2>
                   <p className="mx-auto mt-6 max-w-2xl text-2xl text-blue-200">
-                    Your source for weather and science-driven IPM tools
+                    I have not decided yet...
                   </p>
                 </div>
                 <div className="mt-12 flex justify-center space-x-6 sm:mx-auto sm:flex sm:max-w-lg">
                   {user ? (
                     <Link
-                      to="/models"
+                      to="/notes"
                       className="block rounded-md border border-transparent bg-blue-500 px-5 py-3 text-base font-medium text-white shadow hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-600 sm:px-10"
                     >
-                      View Lawns for {user.email}
+                      View Notes for {user.email}
                     </Link>
                   ) : (
                     <>
