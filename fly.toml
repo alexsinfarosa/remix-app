@@ -1,4 +1,4 @@
-app = "my-remix-app-6f94"
+app = "weed-model-b2c4"
 kill_signal = "SIGINT"
 kill_timeout = 5
 processes = [ ]
