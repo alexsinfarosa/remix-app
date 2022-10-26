@@ -6,108 +6,130 @@ export default function Index() {
   const user = useOptionalUser();
   return (
     <main className="relative min-h-screen bg-white sm:flex sm:items-center sm:justify-center">
-      <div className="-my-4 -mx-4 bg-white sm:py-24">
-        <div className="relative sm:py-16">
-          <div aria-hidden="true" className="hidden sm:block">
-            <div className="absolute inset-y-0 left-0 w-1/2 rounded-r-3xl bg-blue-100" />
-            <svg
-              className="absolute top-8 left-1/2 -ml-3"
-              width={404}
-              height={392}
-              fill="none"
-              viewBox="0 0 404 392"
-            >
-              <defs>
-                <pattern
-                  id="8228f071-bcee-4ec8-905a-2a059a2cc4fb"
-                  x={0}
-                  y={0}
-                  width={20}
-                  height={20}
-                  patternUnits="userSpaceOnUse"
-                >
-                  <rect
-                    x={0}
-                    y={0}
-                    width={4}
-                    height={4}
-                    className="text-blue-200"
-                    fill="currentColor"
-                  />
-                </pattern>
-              </defs>
-              <rect
-                width={404}
-                height={392}
-                fill="url(#8228f071-bcee-4ec8-905a-2a059a2cc4fb)"
+      <div className="relative sm:pb-16 sm:pt-8">
+        <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
+          <div className="relative shadow-xl sm:overflow-hidden sm:rounded-2xl">
+            <div className="absolute inset-0">
+              <img
+                className="h-full w-full object-cover"
+                src="https://user-images.githubusercontent.com/1500684/157774694-99820c51-8165-4908-a031-34fc371ac0d6.jpg"
+                alt="Sonic Youth On Stage"
               />
-            </svg>
-          </div>
-          <div className="mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
-            <div className="relative overflow-hidden rounded-2xl bg-blue-600 px-6 py-10 shadow-xl sm:px-12 sm:py-20">
-              <div
-                aria-hidden="true"
-                className="absolute inset-0 -mt-72 sm:-mt-32 md:mt-0"
-              >
-                <svg
-                  className="absolute inset-0 h-full w-full"
-                  preserveAspectRatio="xMidYMid slice"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 1463 360"
-                >
-                  <path
-                    className="text-blue-500 text-opacity-40"
-                    fill="currentColor"
-                    d="M-82.673 72l1761.849 472.086-134.327 501.315-1761.85-472.086z"
-                  />
-                  <path
-                    className="text-blue-700 text-opacity-40"
-                    fill="currentColor"
-                    d="M-217.088 544.086L1544.761 72l134.327 501.316-1761.849 472.086z"
-                  />
-                </svg>
-              </div>
-              <div className="relative">
-                <div className="sm:text-center">
-                  <h2 className="mt-8 text-6xl font-extrabold tracking-tight text-white sm:text-8xl">
-                    Notes
-                  </h2>
-                  <p className="mx-auto mt-6 max-w-2xl text-2xl text-blue-200">
-                    I have not decided yet...
-                  </p>
-                </div>
-                <div className="mt-12 flex justify-center space-x-6 sm:mx-auto sm:flex sm:max-w-lg">
-                  {user ? (
-                    <Link
-                      to="/notes"
-                      className="block rounded-md border border-transparent bg-blue-500 px-5 py-3 text-base font-medium text-white shadow hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-600 sm:px-10"
-                    >
-                      View Notes for {user.email}
-                    </Link>
-                  ) : (
-                    <>
-                      <div className="inline-flex rounded-md shadow">
-                        <Link
-                          to="/join"
-                          className="block w-full rounded-md border border-transparent bg-blue-500 px-5 py-3 text-base font-medium text-white shadow hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-600 sm:px-10"
-                        >
-                          Sign up
-                        </Link>
-                      </div>
-                      <div className="ml-3 inline-flex">
-                        <Link
-                          to="/login"
-                          className="block w-full rounded-md border border-transparent bg-blue-500 px-5 py-3 text-base font-medium text-white shadow hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-600 sm:px-10"
-                        >
-                          Log in
-                        </Link>
-                      </div>
-                    </>
-                  )}
-                </div>
-              </div>
+              <div className="absolute inset-0 bg-[color:rgba(254,204,27,0.5)] mix-blend-multiply" />
             </div>
+            <div className="relative px-4 pt-16 pb-8 sm:px-6 sm:pt-24 sm:pb-14 lg:px-8 lg:pb-20 lg:pt-32">
+              <h1 className="text-center text-6xl font-extrabold tracking-tight sm:text-8xl lg:text-9xl">
+                <span className="block uppercase text-yellow-500 drop-shadow-md">
+                  Indie Stack
+                </span>
+              </h1>
+              <p className="mx-auto mt-6 max-w-lg text-center text-xl text-white sm:max-w-3xl">
+                Check the README.md file for instructions on how to get this
+                project deployed.
+              </p>
+              <div className="mx-auto mt-10 max-w-sm sm:flex sm:max-w-none sm:justify-center">
+                {user ? (
+                  <Link
+                    to="/notes"
+                    className="flex items-center justify-center rounded-md border border-transparent bg-white px-4 py-3 text-base font-medium text-yellow-700 shadow-sm hover:bg-yellow-50 sm:px-8"
+                  >
+                    View Notes for {user.email}
+                  </Link>
+                ) : (
+                  <div className="space-y-4 sm:mx-auto sm:inline-grid sm:grid-cols-2 sm:gap-5 sm:space-y-0">
+                    <Link
+                      to="/join"
+                      className="flex items-center justify-center rounded-md border border-transparent bg-white px-4 py-3 text-base font-medium text-yellow-700 shadow-sm hover:bg-yellow-50 sm:px-8"
+                    >
+                      Sign up
+                    </Link>
+                    <Link
+                      to="/login"
+                      className="flex items-center justify-center rounded-md bg-yellow-500 px-4 py-3 font-medium text-white hover:bg-yellow-600"
+                    >
+                      Log In
+                    </Link>
+                  </div>
+                )}
+              </div>
+              <a href="https://remix.run">
+                <img
+                  src="https://user-images.githubusercontent.com/1500684/158298926-e45dafff-3544-4b69-96d6-d3bcc33fc76a.svg"
+                  alt="Remix"
+                  className="mx-auto mt-16 w-full max-w-[12rem] md:max-w-[16rem]"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div className="mx-auto max-w-7xl py-2 px-4 sm:px-6 lg:px-8">
+          <div className="mt-6 flex flex-wrap justify-center gap-8">
+            {[
+              {
+                src: "https://user-images.githubusercontent.com/1500684/157764397-ccd8ea10-b8aa-4772-a99b-35de937319e1.svg",
+                alt: "Fly.io",
+                href: "https://fly.io",
+              },
+              {
+                src: "https://user-images.githubusercontent.com/1500684/157764395-137ec949-382c-43bd-a3c0-0cb8cb22e22d.svg",
+                alt: "SQLite",
+                href: "https://sqlite.org",
+              },
+              {
+                src: "https://user-images.githubusercontent.com/1500684/157764484-ad64a21a-d7fb-47e3-8669-ec046da20c1f.svg",
+                alt: "Prisma",
+                href: "https://prisma.io",
+              },
+              {
+                src: "https://user-images.githubusercontent.com/1500684/157764276-a516a239-e377-4a20-b44a-0ac7b65c8c14.svg",
+                alt: "Tailwind",
+                href: "https://tailwindcss.com",
+              },
+              {
+                src: "https://user-images.githubusercontent.com/1500684/157764454-48ac8c71-a2a9-4b5e-b19c-edef8b8953d6.svg",
+                alt: "Cypress",
+                href: "https://www.cypress.io",
+              },
+              {
+                src: "https://user-images.githubusercontent.com/1500684/157772386-75444196-0604-4340-af28-53b236faa182.svg",
+                alt: "MSW",
+                href: "https://mswjs.io",
+              },
+              {
+                src: "https://user-images.githubusercontent.com/1500684/157772447-00fccdce-9d12-46a3-8bb4-fac612cdc949.svg",
+                alt: "Vitest",
+                href: "https://vitest.dev",
+              },
+              {
+                src: "https://user-images.githubusercontent.com/1500684/157772662-92b0dd3a-453f-4d18-b8be-9fa6efde52cf.png",
+                alt: "Testing Library",
+                href: "https://testing-library.com",
+              },
+              {
+                src: "https://user-images.githubusercontent.com/1500684/157772934-ce0a943d-e9d0-40f8-97f3-f464c0811643.svg",
+                alt: "Prettier",
+                href: "https://prettier.io",
+              },
+              {
+                src: "https://user-images.githubusercontent.com/1500684/157772990-3968ff7c-b551-4c55-a25c-046a32709a8e.svg",
+                alt: "ESLint",
+                href: "https://eslint.org",
+              },
+              {
+                src: "https://user-images.githubusercontent.com/1500684/157773063-20a0ed64-b9f8-4e0b-9d1e-0b65a3d4a6db.svg",
+                alt: "TypeScript",
+                href: "https://typescriptlang.org",
+              },
+            ].map((img) => (
+              <a
+                key={img.href}
+                href={img.href}
+                className="flex h-16 w-32 justify-center p-1 grayscale transition hover:grayscale-0 focus:grayscale-0"
+              >
+                <img alt={img.alt} src={img.src} className="object-contain" />
+              </a>
+            ))}
           </div>
         </div>
       </div>
