@@ -1,18 +1,15 @@
-import type { LoaderArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { Form, Link, NavLink, Outlet, useLoaderData } from "@remix-run/react";
 
-import { requireUserId } from "~/session.server";
+import { getToolListItems } from "~/models/tool.server";
 import { useUser } from "~/utils";
-import { getNoteListItems } from "~/models/note.server";
 
-export async function loader({ request }: LoaderArgs) {
-  const userId = await requireUserId(request);
-  const noteListItems = await getNoteListItems({ userId });
-  return json({ noteListItems });
+export async function loader() {
+  const toolListItems = await getToolListItems();
+  return json({ toolListItems });
 }
 
-export default function IpmToolPage() {
+export default function ToolPage() {
   const data = useLoaderData<typeof loader>();
   const user = useUser();
 
@@ -20,7 +17,7 @@ export default function IpmToolPage() {
     <div className="flex h-full min-h-screen flex-col">
       <header className="flex items-center justify-between bg-slate-800 p-4 text-white">
         <h1 className="text-3xl font-bold">
-          <Link to=".">Notes</Link>
+          <Link to=".">Tools</Link>
         </h1>
         <p>{user.email}</p>
         <Form action="/logout" method="post">
@@ -33,27 +30,29 @@ export default function IpmToolPage() {
         </Form>
       </header>
 
-      <main className="flex h-full bg-slate-100">
-        <div className="h-full w-80 border-r bg-pink-50">
+      <main className="flex h-full bg-white">
+        <div className="h-full w-96">
           <Link to="new" className="block p-4 text-xl text-blue-500">
-            + New Note
+            + New Tool
           </Link>
 
           <hr />
 
-          {data.noteListItems.length === 0 ? (
-            <p className="p-4">No notes yet</p>
+          {data.toolListItems.length === 0 ? (
+            <p className="p-4">No tools yet</p>
           ) : (
             <ol>
-              {data.noteListItems.map((note) => (
-                <li key={note.id}>
+              {data.toolListItems.map((tool) => (
+                <li key={tool.id}>
                   <NavLink
                     className={({ isActive }) =>
-                      `block border-b p-4 text-xl ${isActive ? "bg-white" : ""}`
+                      `block px-4 py-2  ${
+                        isActive ? "text-blue-500" : "text-gray-700"
+                      }`
                     }
-                    to={note.id}
+                    to={tool.slug}
                   >
-                    📝 {note.title}
+                    {tool.name}
                   </NavLink>
                 </li>
               ))}

@@ -2,197 +2,136 @@
   {
     "type": "NEWA Crop & IPM Tools",
     "tool": "Apple Tools",
-    "name": "Apple Scab",
-    "states": ["ALL"],
-    "biofix1": {}
+    "name": "Apple Scab"
   },
   {
     "type": "NEWA Crop & IPM Tools",
     "tool": "Apple Tools",
-    "name": "Fire Blight",
-    "states": ["ALL"],
-    "biofix1": {},
-    "biofix2": {},
-    "orchardBlightHistory": {}
+    "name": "Fire Blight"
   },
   {
     "type": "NEWA Crop & IPM Tools",
     "tool": "Apple Tools",
-    "name": "Sooty Blotch and Flyspeck",
-    "states": ["ALL"],
-    "biofix1": {},
-    "biofix2": {}
+    "name": "Sooty Blotch and Flyspeck"
   },
   {
     "type": "NEWA Crop & IPM Tools",
     "tool": "Apple Tools",
-    "name": "Apple Maggot",
-    "biofix1": {},
-    "firstTrapCatchDates": {},
-    "states": ["ALL"]
+    "name": "Apple Maggot"
   },
   {
     "type": "NEWA Crop & IPM Tools",
     "tool": "Apple Tools",
-    "name": "Codling Moth",
-    "biofix1": {},
-    "biofix2": {},
-    "states": ["ALL"]
+    "name": "Codling Moth"
   },
   {
     "type": "NEWA Crop & IPM Tools",
     "tool": "Apple Tools",
-    "name": "Obliquebanded Leafroller",
-    "biofix1": {},
-    "states": ["ALL"]
+    "name": "Obliquebanded Leafroller"
   },
   {
     "type": "NEWA Crop & IPM Tools",
     "tool": "Apple Tools",
-    "name": "Oriental Fruit Moth",
-    "biofix1": {},
-    "biofix2": {},
-    "biofix3": {},
-    "states": ["ALL"]
+    "name": "Oriental Fruit Moth"
   },
   {
     "type": "NEWA Crop & IPM Tools",
     "tool": "Apple Tools",
-    "name": "Plum Curculio",
-    "biofix1": {},
-    "states": ["ALL"]
+    "name": "Plum Curculio"
   },
   {
     "type": "NEWA Crop & IPM Tools",
     "tool": "Apple Tools",
-    "name": "San Jose Scale",
-    "biofix1": {},
-    "biofix2": {},
-    "states": ["ALL"]
+    "name": "San Jose Scale"
   },
   {
     "type": "NEWA Crop & IPM Tools",
     "tool": "Apple Tools",
-    "name": "Spotted Tentiform Leafminer",
-    "biofix1": {},
-    "biofix2": {},
-    "states": ["ALL"]
+    "name": "Spotted Tentiform Leafminer"
   },
   {
     "type": "NEWA Crop & IPM Tools",
     "tool": "Apple Tools",
-    "name": "Cornell Apple Carbohydrate Thinning Model",
-    "greenTip": {},
-    "bloom": {},
-    "percentFloweringSpurs": {},
-    "states": ["ALL"]
+    "name": "Cornell Apple Carbohydrate Thinning Model"
   },
   {
     "type": "NEWA Crop & IPM Tools",
     "tool": "Apple Tools",
-    "name": "Pollen Tube Growth Model",
-    "blocks": [],
-    "states": ["ALL"]
+    "name": "Pollen Tube Growth Model"
   },
   {
     "type": "NEWA Crop & IPM Tools",
     "tool": "Apple Tools",
-    "name": "Apple Irrigation Model",
-    "greenTip": {},
-    "ageOfOrchard": {},
-    "treesPerAcre": {},
-    "rainfallAndIrrigation": {},
-    "states": ["ALL"]
+    "name": "Apple Irrigation Model"
   },
   {
     "type": "NEWA Crop & IPM Tools",
     "tool": "Berry Tools",
-    "name": "Blueberry Maggot",
-    "states": ["ALL"]
+    "name": "Blueberry Maggot"
   },
   {
     "type": "NEWA Crop & IPM Tools",
     "tool": "Grape Tools",
-    "name": "Grape Diseases",
-    "states": ["ALL"]
+    "name": "Grape Diseases"
   },
   {
     "type": "NEWA Crop & IPM Tools",
     "tool": "Grape Tools",
-    "name": "Grape Berry Moth",
-    "biofix1": {},
-    "states": ["ALL"],
-    "wildGrapeBloomDates": {}
+    "name": "Grape Berry Moth"
   },
   {
     "type": "NEWA Crop & IPM Tools",
     "tool": "Field Crop Tools",
-    "name": "Alfalfa Weevil",
-    "states": ["ALL"]
+    "name": "Alfalfa Weevil"
   },
   {
     "type": "NEWA Crop & IPM Tools",
     "tool": "Vegetable Tools",
-    "name": "Cercospora Leaf Spot of Table Beets",
-    "states": ["ALL"]
+    "name": "Cercospora Leaf Spot of Table Beets"
   },
   {
     "type": "NEWA Crop & IPM Tools",
     "tool": "Vegetable Tools",
-    "name": "Cabbage Maggot",
-    "states": ["ALL"]
+    "name": "Cabbage Maggot"
   },
   {
     "type": "NEWA Crop & IPM Tools",
     "tool": "Vegetable Tools",
-    "name": "Onion Diseases",
-    "states": ["ALL"],
-    "biofix1": {}
+    "name": "Onion Diseases"
   },
   {
     "type": "NEWA Crop & IPM Tools",
     "tool": "Vegetable Tools",
-    "name": "Onion Maggot",
-    "states": ["ALL"]
+    "name": "Onion Maggot"
   },
   {
     "type": "NEWA Crop & IPM Tools",
     "tool": "Vegetable Tools",
-    "name": "Potato Diseases",
-    "states": ["ALL"]
+    "name": "Potato Diseases"
   },
   {
     "type": "NEWA Crop & IPM Tools",
     "tool": "Vegetable Tools",
-    "name": "Tomato Diseases",
-    "states": ["ALL"]
+    "name": "Tomato Diseases"
   },
   {
     "type": "NEWA Crop & IPM Tools",
     "tool": "Berry Tools",
-    "name": "Strawberry Diseases",
-    "states": ["ALL"],
-    "hasBloom": {},
-    "hasHarvest": {}
+    "name": "Strawberry Diseases"
   },
   {
     "type": "NEWA Crop & IPM Tools",
     "tool": "Grape Tools",
-    "name": "Spotted Lanternfly",
-    "states": ["ALL"],
-    "biofix": {}
+    "name": "Spotted Lanternfly"
   },
   {
     "type": "NEWA Crop & IPM Tools",
     "tool": "Grape Tools",
-    "name": "Downy Mildew (DMCast)",
-    "states": ["ALL"]
+    "name": "Downy Mildew (DMCast)"
   },
   {
     "type": "NEWA Crop & IPM Tools",
     "tool": "Field Crop Tools",
-    "name": "Seedcorn Maggot",
-    "biofix1": {},
-    "states": ["NY"]
+    "name": "Seedcorn Maggot"
   }
 ]
