@@ -16,6 +16,7 @@ model User {
 
   password Password?
   notes    Note[]
+  tools    Tool[]
 }
 
 model Password {
@@ -35,4 +36,33 @@ model Note {
 
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   userId String
+}
+
+model Tool {
+  id          String   @id @default(cuid())
+  name        String
+  startSeason DateTime
+  endSeason   DateTime
+  tutorialUrl String?
+  biofix      Biofix[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  userId String
+}
+
+model Biofix {
+  id      String   @id @default(cuid())
+  label   String
+  date    DateTime
+  minDate DateTime
+  maxDate DateTime @default(now())
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  tool   Tool   @relation(fields: [toolId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  toolId String
 }

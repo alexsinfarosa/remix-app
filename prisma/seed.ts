@@ -1,6 +1,8 @@
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcryptjs";
 
+// import tools from "./fixtures/tools.json";
+
 const prisma = new PrismaClient();
 
 async function seed() {
