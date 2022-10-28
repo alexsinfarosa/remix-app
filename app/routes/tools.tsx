@@ -2,7 +2,7 @@ import { json } from "@remix-run/node";
 import { Form, Link, NavLink, Outlet, useLoaderData } from "@remix-run/react";
 
 import { getToolListItems } from "~/models/tool.server";
-import { useUser } from "~/utils";
+import { groupBy, useUser } from "~/utils";
 
 export async function loader() {
   const toolListItems = await getToolListItems();
@@ -11,6 +11,32 @@ export async function loader() {
 
 export default function ToolPage() {
   const data = useLoaderData<typeof loader>();
+
+  let tools = [];
+  for (const [key, val] of groupBy(data.toolListItems, (t) => t.tool)) {
+    tools.push(
+      <div key={key} className="p-4">
+        <h3 className="py-2 px-4 font-extrabold text-gray-600">{key}</h3>
+        <ul>
+          {val.map((tool) => (
+            <li key={tool.slug}>
+              <NavLink
+                className={({ isActive }) =>
+                  `block px-5 py-2  ${
+                    isActive ? "text-blue-500" : "text-gray-700"
+                  }`
+                }
+                to={tool.slug}
+              >
+                {tool.name}
+              </NavLink>
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
+  }
+
   const user = useUser();
 
   return (
@@ -31,34 +57,9 @@ export default function ToolPage() {
       </header>
 
       <main className="flex h-full bg-white">
-        <div className="h-full w-96">
-          <Link to="new" className="block p-4 text-xl text-blue-500">
-            + New Tool
-          </Link>
-
-          <hr />
-
-          {data.toolListItems.length === 0 ? (
-            <p className="p-4">No tools yet</p>
-          ) : (
-            <ol>
-              {data.toolListItems.map((tool) => (
-                <li key={tool.id}>
-                  <NavLink
-                    className={({ isActive }) =>
-                      `block px-4 py-2  ${
-                        isActive ? "text-blue-500" : "text-gray-700"
-                      }`
-                    }
-                    to={tool.slug}
-                  >
-                    {tool.name}
-                  </NavLink>
-                </li>
-              ))}
-            </ol>
-          )}
-        </div>
+        <aside className="h-full w-96">
+          <>{tools}</>
+        </aside>
 
         <div className="flex-1 p-6">
           <Outlet />
