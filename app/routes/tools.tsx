@@ -1,42 +1,28 @@
+import type { MetaFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { Form, Link, NavLink, Outlet, useLoaderData } from "@remix-run/react";
+import { getStationList } from "~/models/station.server";
 
 import { getToolListItems } from "~/models/tool.server";
 import { groupBy, useUser } from "~/utils";
 
+export const meta: MetaFunction = (params) => {
+  // console.log(params);
+  return {
+    title: "Home Page",
+    description: "Weed Model Landing Page",
+  };
+};
+
 export async function loader() {
   const toolListItems = await getToolListItems();
-  return json({ toolListItems });
+  const stationList = await getStationList();
+  return json({ toolListItems, stationList });
 }
 
 export default function ToolPage() {
   const data = useLoaderData<typeof loader>();
-
-  let tools = [];
-  for (const [key, val] of groupBy(data.toolListItems, (t) => t.tool)) {
-    tools.push(
-      <div key={key} className="p-4">
-        <h3 className="py-2 px-4 font-extrabold text-gray-600">{key}</h3>
-        <ul>
-          {val.map((tool) => (
-            <li key={tool.slug}>
-              <NavLink
-                className={({ isActive }) =>
-                  `block px-5 py-2  ${
-                    isActive ? "text-blue-500" : "text-gray-700"
-                  }`
-                }
-                to={tool.slug}
-              >
-                {tool.name}
-              </NavLink>
-            </li>
-          ))}
-        </ul>
-      </div>
-    );
-  }
-
+  const ipmToolsList = groupBy(data.toolListItems, ["tool"]);
   const user = useUser();
 
   return (
@@ -57,12 +43,38 @@ export default function ToolPage() {
       </header>
 
       <main className="flex h-full bg-white">
-        <aside className="h-full w-96">
-          <>{tools}</>
-        </aside>
+        <nav className="relative h-full w-96 p-4 lg:text-sm lg:leading-6">
+          {Object.entries(ipmToolsList).map(([toolType, tool]) => {
+            return (
+              <div key={toolType} className="mt-12 lg:mt-8">
+                <h5 className="mb-8 font-semibold text-slate-900 lg:mb-3">
+                  {toolType}
+                </h5>
+                <ul className="space-y-6 border-l border-slate-100 dark:border-slate-800 lg:space-y-2">
+                  {tool.map((t) => (
+                    <li key={t.slug}>
+                      <NavLink
+                        className={({ isActive }) =>
+                          `-ml-px block border-l border-transparent pl-4  ${
+                            isActive
+                              ? "-ml-px block border-l border-current pl-4 font-semibold text-blue-500"
+                              : "text-slate-700 hover:border-slate-400 hover:text-slate-900"
+                          }`
+                        }
+                        to={t.slug}
+                      >
+                        {t.name}
+                      </NavLink>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            );
+          })}
+        </nav>
 
         <div className="flex-1 p-6">
-          <Outlet />
+          <Outlet context={data.stationList} />
         </div>
       </main>
     </div>

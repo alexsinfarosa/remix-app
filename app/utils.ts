@@ -89,14 +89,17 @@ export function stringToSlug(str: string) {
   return str;
 }
 
-export function groupBy<K, V>(array: V[], grouper: (item: V) => K) {
-  return array.reduce((store, item) => {
-    var key = grouper(item);
-    if (!store.has(key)) {
-      store.set(key, [item]);
+export function groupBy<T>(
+  arr: T[],
+  keys: (keyof T)[]
+): { [key: string]: T[] } {
+  return arr.reduce((storage, item) => {
+    const objKey = keys.map((key) => `${item[key]}`).join(":");
+    if (storage[objKey]) {
+      storage[objKey].push(item);
     } else {
-      store.get(key).push(item);
+      storage[objKey] = [item];
     }
-    return store;
-  }, new Map<K, V[]>());
+    return storage;
+  }, {} as { [key: string]: T[] });
 }
