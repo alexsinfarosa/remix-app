@@ -10,7 +10,7 @@ export default function StationListCombobox({
   options: Station[];
 }) {
   const [query, setQuery] = useState("");
-  const [selectedStation, setSelectedStation] = useState(null);
+  const [selectedStation, setSelectedStation] = useState<Station | null>(null);
 
   const filteredStationList =
     query === ""
@@ -29,6 +29,8 @@ export default function StationListCombobox({
           className="w-full rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 sm:text-sm"
           onChange={(event) => setQuery(event.target.value)}
           displayValue={(station: Station) => station?.name}
+          name="stn_id"
+          value={selectedStation?.id}
         />
         <Combobox.Button className="absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none">
           <ChevronUpDownIcon
