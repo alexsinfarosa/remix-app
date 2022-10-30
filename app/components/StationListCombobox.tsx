@@ -1,22 +1,25 @@
-import { useState } from "react";
-import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import { Combobox } from "@headlessui/react";
+import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import clsx from "clsx";
-import type { Station } from "~/models/station.server";
+import { useState } from "react";
+import type { StationCombobox } from "~/models/station.server";
 
 export default function StationListCombobox({
+  station,
   options,
 }: {
-  options: Station[];
+  station: StationCombobox | undefined;
+  options: StationCombobox[];
 }) {
   const [query, setQuery] = useState("");
-  const [selectedStation, setSelectedStation] = useState<Station | null>(null);
+  const [selectedStation, setSelectedStation] =
+    useState<StationCombobox | null>(station || null);
 
   const filteredStationList =
     query === ""
       ? options
-      : options.filter((station: Station) => {
-          return station.name.toLowerCase().includes(query.toLowerCase());
+      : options.filter((stn: StationCombobox) => {
+          return stn.name.toLowerCase().includes(query.toLowerCase());
         });
 
   return (
@@ -28,10 +31,9 @@ export default function StationListCombobox({
         <Combobox.Input
           className="w-full rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 sm:text-sm"
           onChange={(event) => setQuery(event.target.value)}
-          displayValue={(station: Station) => station?.name}
-          name="stn_id"
-          value={selectedStation?.id}
+          displayValue={(station: StationCombobox) => station?.name}
         />
+        <input type="hidden" name="stn_id" value={selectedStation?.id} />
         <Combobox.Button className="absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none">
           <ChevronUpDownIcon
             className="h-5 w-5 text-gray-400"
@@ -41,7 +43,7 @@ export default function StationListCombobox({
 
         {filteredStationList.length > 0 && (
           <Combobox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-            {filteredStationList.map((station: Station) => (
+            {filteredStationList.map((station: StationCombobox) => (
               <Combobox.Option
                 key={station.id}
                 value={station}

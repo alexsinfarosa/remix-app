@@ -1,50 +1,52 @@
-import { LoaderArgs, redirect } from "@remix-run/node";
-import { json } from "@remix-run/node";
-import {
-  Form,
-  useCatch,
-  useLoaderData,
-  useOutletContext,
-} from "@remix-run/react";
+import type { ActionArgs, LoaderArgs } from "@remix-run/node";
+import { json, redirect } from "@remix-run/node";
+import { Form, useCatch, useLoaderData } from "@remix-run/react";
 import invariant from "tiny-invariant";
-import DateOfInterest from "~/components/dateOfInterest";
-import StationListCombobox from "~/components/stationListCombobox";
-import type { Station } from "~/models/station.server";
+import DateOfInterest from "~/components/DateOfInterest";
+import StationListCombobox from "~/components/StationListCombobox";
+import type { StationCombobox } from "~/models/station.server";
+import { getStationList } from "~/models/station.server";
 import { getTool } from "~/models/tool.server";
-import type { ActionArgs } from "@remix-run/node";
 
-export async function loader({ params }: LoaderArgs) {
+export async function loader({ request, params }: LoaderArgs) {
   invariant(params.toolSlug, "toolSlug not found");
+
+  const stations = await getStationList();
+  const stationList = stations.map((stn) => ({
+    id: stn.id,
+    name: stn.name,
+    activeStatus: stn.activeStatus,
+  }));
+
+  const url = new URL(request.url);
+  const doi = url.searchParams.get("doi");
+  const stnId = url.searchParams.get("stn_id");
 
   const tool = await getTool({ slug: params.toolSlug });
   if (!tool) {
     throw new Response("Not Found", { status: 404 });
   }
-  return json({ tool });
+  return json({ tool, doi, stnId, stationList });
 }
 
 export async function action({ request }: ActionArgs) {
-  console.log(request);
-  const formData = await request.formData();
-  const { doi, station } = Object.fromEntries(formData);
-  console.log({ doi, station });
-
   const url = new URL(request.url).pathname;
-  const ciccio = new URLSearchParams(url);
-  console.log(ciccio);
   return redirect(url);
 }
 
 export default function ToolDetailPage() {
   const data = useLoaderData<typeof loader>();
-  const stationlist = useOutletContext<Station[]>();
-  const { tool, name } = data.tool;
+  const { tool, stationList } = data;
+
+  const station = stationList.find(
+    (stn: StationCombobox) => stn.id === data.stnId
+  );
 
   return (
     <div>
-      <p className="text-sm font-medium text-sky-500">{tool}</p>
+      <p className="text-sm font-medium text-sky-500">{tool.tool}</p>
       <div className="mt-2 flex items-center">
-        <h1 className="text-3xl tracking-tight text-slate-900">{name}</h1>
+        <h1 className="text-3xl tracking-tight text-slate-900">{tool.name}</h1>
       </div>
 
       <Form method="get" className="mt-8 flex items-end space-x-4">
@@ -52,7 +54,10 @@ export default function ToolDetailPage() {
           <DateOfInterest></DateOfInterest>
         </div>
         <div className="flex-2">
-          <StationListCombobox options={stationlist}></StationListCombobox>
+          <StationListCombobox
+            options={stationList}
+            station={station}
+          ></StationListCombobox>
         </div>
 
         <div className="flex-1">

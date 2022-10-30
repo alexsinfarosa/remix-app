@@ -31,6 +31,12 @@ export type Station = {
   state: string;
 };
 
+export type StationCombobox = {
+  id: string;
+  name: string;
+  activeStatus: boolean;
+};
+
 export async function getStationList(): Promise<Station[]> {
   const url = process.env.STATION_LIST_URL;
   invariant(url, "url not found");

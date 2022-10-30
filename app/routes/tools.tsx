@@ -1,28 +1,26 @@
 import type { MetaFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { Form, Link, NavLink, Outlet, useLoaderData } from "@remix-run/react";
-import { getStationList } from "~/models/station.server";
 
 import { getToolListItems } from "~/models/tool.server";
 import { groupBy, useUser } from "~/utils";
 
-export const meta: MetaFunction = (params) => {
-  // console.log(params);
+export const meta: MetaFunction = () => {
   return {
-    title: "Home Page",
-    description: "Weed Model Landing Page",
+    title: "Tools Page",
+    description: "Tools Page",
   };
 };
 
 export async function loader() {
   const toolListItems = await getToolListItems();
-  const stationList = await getStationList();
-  return json({ toolListItems, stationList });
+  return json({ toolListItems });
 }
 
 export default function ToolPage() {
   const data = useLoaderData<typeof loader>();
-  const ipmToolsList = groupBy(data.toolListItems, ["tool"]);
+  const { toolListItems } = data;
+  const ipmToolsList = groupBy(toolListItems, ["tool"]);
   const user = useUser();
 
   return (
@@ -74,7 +72,7 @@ export default function ToolPage() {
         </nav>
 
         <div className="flex-1 p-6">
-          <Outlet context={data.stationList} />
+          <Outlet />
         </div>
       </main>
     </div>
