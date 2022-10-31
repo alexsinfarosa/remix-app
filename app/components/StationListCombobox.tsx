@@ -5,11 +5,11 @@ import { useState } from "react";
 import type { StationCombobox } from "~/models/station.server";
 
 export default function StationListCombobox({
-  station,
   options,
+  station,
 }: {
-  station: StationCombobox | undefined;
   options: StationCombobox[];
+  station: StationCombobox | undefined;
 }) {
   const [query, setQuery] = useState("");
   const [selectedStation, setSelectedStation] =

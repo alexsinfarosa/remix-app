@@ -1,12 +1,15 @@
 import type { ActionArgs, LoaderArgs } from "@remix-run/node";
 import { json, redirect } from "@remix-run/node";
 import { Form, useCatch, useLoaderData } from "@remix-run/react";
+import React from "react";
 import invariant from "tiny-invariant";
 import DateOfInterest from "~/components/DateOfInterest";
 import StationListCombobox from "~/components/StationListCombobox";
 import type { StationCombobox } from "~/models/station.server";
 import { getStationList } from "~/models/station.server";
 import { getTool } from "~/models/tool.server";
+
+const StationListComboboxMemo = React.memo(StationListCombobox);
 
 export async function loader({ request, params }: LoaderArgs) {
   invariant(params.toolSlug, "toolSlug not found");
@@ -54,10 +57,10 @@ export default function ToolDetailPage() {
           <DateOfInterest></DateOfInterest>
         </div>
         <div className="flex-2">
-          <StationListCombobox
+          <StationListComboboxMemo
             options={stationList}
             station={station}
-          ></StationListCombobox>
+          ></StationListComboboxMemo>
         </div>
 
         <div className="flex-1">
