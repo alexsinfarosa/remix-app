@@ -11,6 +11,12 @@ import { getTool } from "~/models/tool.server";
 
 const StationListComboboxMemo = React.memo(StationListCombobox);
 
+export function headers({ loaderHeaders }: { loaderHeaders: Headers }) {
+  return {
+    "Cache-Control": loaderHeaders.get("Cache-Control"),
+  };
+}
+
 export async function loader({ request, params }: LoaderArgs) {
   invariant(params.toolSlug, "toolSlug not found");
 
@@ -29,7 +35,9 @@ export async function loader({ request, params }: LoaderArgs) {
   if (!tool) {
     throw new Response("Not Found", { status: 404 });
   }
-  return json({ tool, doi, stnId, stationList });
+
+  let headers = { "Cache-Control": "max-age=3600" };
+  return json({ tool, doi, stnId, stationList }, { headers });
 }
 
 export async function action({ request }: ActionArgs) {
