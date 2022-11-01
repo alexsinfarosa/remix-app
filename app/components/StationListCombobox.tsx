@@ -1,6 +1,7 @@
 import { Combobox } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import clsx from "clsx";
+import React from "react";
 import { useState } from "react";
 import type { StationCombobox } from "~/models/station.server";
 
@@ -21,6 +22,13 @@ export default function StationListCombobox({
       : options.filter((stn: StationCombobox) => {
           return stn.name.toLowerCase().includes(query.toLowerCase());
         });
+
+  React.useEffect(() => {
+    if (station === undefined) {
+      setSelectedStation(null);
+      setQuery("");
+    }
+  }, [station]);
 
   return (
     <Combobox as="div" value={selectedStation} onChange={setSelectedStation}>
