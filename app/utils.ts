@@ -103,3 +103,11 @@ export function groupBy<T>(
     return storage;
   }, {} as { [key: string]: T[] });
 }
+
+export function isValidDate(date: string) {
+  return isNaN(Date.parse(date)) ? null : date;
+}
+
+export function isDateAfterDate2(date: string, date2: string) {
+  return Date.parse(date) > Date.parse(date2);
+}

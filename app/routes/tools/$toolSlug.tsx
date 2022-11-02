@@ -36,7 +36,7 @@ export async function loader({ request, params }: LoaderArgs) {
     throw new Response("Not Found", { status: 404 });
   }
 
-  let headers = { "Cache-Control": "max-age=3600" };
+  let headers = { "Cache-Control": "max-age=86400" };
   return json({ tool, doi, stnId, stationList }, { headers });
 }
 
@@ -47,9 +47,9 @@ export async function action({ request }: ActionArgs) {
 
 export default function ToolDetailPage() {
   const data = useLoaderData<typeof loader>();
-  const { tool, stationList } = data;
+  const { tool, stationList, doi } = data;
 
-  const station = stationList.find(
+  const station: StationCombobox | undefined = stationList.find(
     (stn: StationCombobox) => stn.id === data.stnId
   );
 
@@ -62,7 +62,7 @@ export default function ToolDetailPage() {
 
       <Form method="get" className="mt-8 flex items-end space-x-4">
         <div className="flex-1">
-          <DateOfInterest></DateOfInterest>
+          <DateOfInterest doi={doi}></DateOfInterest>
         </div>
         <div className="flex-2">
           <StationListComboboxMemo
