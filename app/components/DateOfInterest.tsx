@@ -27,6 +27,7 @@ export default function DateOfInterest({ doi }: { doi: string | null }) {
         Date of Interest:
       </label>
       <input
+        data-testid="ciccio"
         type="date"
         id="dateOfInterest"
         name="doi"
