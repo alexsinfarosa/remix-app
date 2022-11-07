@@ -9,7 +9,8 @@ test("renders DateOfInterest component", () => {
 
 test("selecting a date before 2019-01-01 should return the current date", () => {
   render(<DateOfInterest doi="2018-01-01" />);
-  const dateOfInterest = screen.getByTestId("ciccio");
+  const dateOfInterest = screen.getByTestId("ciccio") as HTMLInputElement;
+  console.log(dateOfInterest);
   const currentDate = new Date().toISOString().split("T")[0];
   expect(dateOfInterest.value).toBe(currentDate);
 });
