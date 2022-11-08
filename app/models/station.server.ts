@@ -38,9 +38,9 @@ export type StationCombobox = {
 };
 
 export async function getStationList(): Promise<Station[]> {
-  const url = process.env.STATION_LIST_URL;
-  invariant(url, "url not found");
-  const response = await fetch(url);
+  // const url = process.env.STATION_LIST_URL;
+  // invariant(url, "url not found");
+  const response = await fetch("https://newa.rcc-acis.workers.dev/v0/stations");
   if (!response.ok) {
     throw new Error(`HTTP error! status: ${response.status}`);
   }

@@ -1,6 +1,7 @@
 const { setupServer } = require("msw/node");
+const handlers = require("./handlers");
 
-const server = setupServer();
+const server = setupServer(...handlers);
 
 server.listen({ onUnhandledRequest: "bypass" });
 console.info("🔶 Mock server running");
