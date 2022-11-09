@@ -3,7 +3,8 @@ import { getStationList } from "~/models/station.server";
 import StationListCombobox from "./StationListCombobox";
 import { server } from "../../mocks/index";
 
-test("it renders", async () => {
+it("should render the stationList combobox", async () => {
+  // Establish API mocking before all tests.
   beforeAll(() => server.listen());
   // Reset any request handlers that we may add during the tests,
   // so they don't affect other tests.
