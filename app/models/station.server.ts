@@ -1,5 +1,3 @@
-import invariant from "tiny-invariant";
-
 type Elems = {
   wdir: number;
   srad: number;
