@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-
 export default function TestPage() {
   function onPlay() {
     console.log("ciccio");

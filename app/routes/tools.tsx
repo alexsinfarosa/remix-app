@@ -41,14 +41,14 @@ export default function ToolPage() {
       </header>
 
       <main className="flex h-full bg-white">
-        <nav className="relative h-full w-96 p-4 lg:text-sm lg:leading-6">
+        <nav className="p-4w-96 relative h-full lg:text-sm lg:leading-6">
           {Object.entries(ipmToolsList).map(([toolType, tool]) => {
             return (
               <div key={toolType} className="mt-12 lg:mt-8">
                 <h5 className="mb-8 font-semibold text-slate-900 lg:mb-3">
                   {toolType}
                 </h5>
-                <ul className="space-y-6 border-l border-slate-100 dark:border-slate-800 lg:space-y-2">
+                <ul className="space-y-4 border-l border-slate-100 dark:border-slate-800 lg:space-y-2">
                   {tool.map((t) => (
                     <li key={t.slug}>
                       <NavLink
