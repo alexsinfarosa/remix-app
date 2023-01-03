@@ -41,7 +41,7 @@ export default function ToolPage() {
       </header>
 
       <main className="flex h-full bg-white">
-        <nav className="p-4w-96 relative h-full lg:text-sm lg:leading-6">
+        <nav className="relative h-full w-96 p-4 lg:text-sm lg:leading-6">
           {Object.entries(ipmToolsList).map(([toolType, tool]) => {
             return (
               <div key={toolType} className="mt-12 lg:mt-8">
