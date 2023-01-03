@@ -75,7 +75,7 @@ function Circle({ coordinates }: { coordinates: Coordinates }) {
       r="8"
       fill="#10b981"
       stroke="#064e3b"
-      stroke-width="1"
+      strokeWidth="1"
     />
   );
 }
